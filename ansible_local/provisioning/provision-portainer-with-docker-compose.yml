@@ -1,0 +1,32 @@
+---
+# Ansible playbook for provision docker app 
+#
+#
+# @author Patricio López (2019).
+
+- hosts: all
+  gather_facts: yes
+
+  vars_files:
+    - host_vars/remote
+
+
+  pre_tasks:
+  tasks:
+    - name: Ansible check directory.
+      stat:
+              path: /home/vagrant/docker-compose
+      register: my_folder
+    - name: "echo if directory already exists"
+      debug:
+              msg: "the docker-compose folder already exist"
+      when: my_folder.stat.exists
+
+    - name: create directory if don't exist
+      file:
+              path: /home/vagrant/docker-compose
+              state: directory
+              mode: 0755
+              group: vagrant
+              owner: vagrant
+      when: my_folder.stat.exists == false

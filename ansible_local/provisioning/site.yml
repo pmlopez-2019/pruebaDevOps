@@ -1,0 +1,7 @@
+---
+- name: Configurations to "remote" host
+  hosts: remote
+  remote_user: vagrant # remote user
+  become: yes
+  roles:
+          - setup

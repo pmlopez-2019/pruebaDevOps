@@ -1,0 +1,5 @@
+---
+ansible_python_interpreter: /usr/bin/python2.7
+
+remote_user: vagrant
+docker_group: docker
